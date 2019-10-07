@@ -1,13 +1,12 @@
 # **Nadir**
-Subjects:  
-Linux towards server & embedded, System development & Project Management, Service.
+Subjects: Linux towards server & embedded, System development & Project Management, Service.
 
 ## **Content**
 1. [Case](#Case)
 2. [Case Solution](#Brain-twisting-fix)
 3. [Soft- & Hardware](#Soft--&-Hardware)
-    1. [Software](#Software)
-    2. [Hardware](#Hardware)
+    * [Software](#Software)
+    * [Hardware](#Hardware)
 
 ## **Case**
 The seemless integration of the home, for me, is not seemless enough.  
