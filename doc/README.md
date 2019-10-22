@@ -3,15 +3,19 @@ Subjects: Linux towards server & embedded, System development & Project Manageme
 
 ## **Content**
 1. [Case](#Case)
-2. [Case Solution](#Brain-twisting-fix)
-3. [Soft- & Hardware](#Soft--&-Hardware)
+2. [Thesis Statement](#Thesis-Statement)
+3. [Case Solution](#Brain-twisting-fix)
+4. [Soft- & Hardware](#Soft--&-Hardware)
     * [Software](#Software)
     * [Hardware](#Hardware)
 
 ## **Case**
 The seemless integration of the home, for me, is not seemless enough.  
-I want to solve this, by making a simple app,which could lead to a web interface,  
+I want to solve this, by making a simple app,  
 from which you can add, control and delete your desired smart home products.
+
+## **Thesis statement**
+How are we going to make the smart home integration more seemless?
 
 ## **Brain twisting fix**
 THIS WILL REQUIRE RESEACH ABOUT THE PHILIPS HUE  
@@ -24,7 +28,7 @@ For a small overview of the software I am gonna use / make aswell as giving an o
 Brief list of the software I intend to use.
 * Python - Flask
 * Flutter - App
-* Google Cloud Firestore - Database
+* Google Cloud Firebase - Database
 
 ### **Hardware**
 Brief list of the hardware I intend to use.
