@@ -23,7 +23,6 @@ class _SDeviceState extends State<SDevice> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
-  final TextEditingController _iPController = TextEditingController();
   final TextEditingController _gWController = TextEditingController();
   final TextEditingController _gWiPController = TextEditingController();
 
@@ -34,12 +33,13 @@ class _SDeviceState extends State<SDevice> {
     if (widget?.sdMode == SDMode.Editing) {
       _nameController.text = _sds[widget.index]['name'];
       _descController.text = _sds[widget.index]['desc'];
-      _iPController.text = _sds[widget.index]['IP'];
       _gWController.text = _sds[widget.index]['gateway'];
       _gWiPController.text = _sds[widget.index]['gatewayIP'];
     }
     super.didChangeDependencies();
   }
+
+  var dropdownSelectedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +59,18 @@ class _SDeviceState extends State<SDevice> {
               Container(height: 8,),
               _TextFields(_descController, 'Description for Smart Device <e.g group>'),
               Container(height: 8,),
-              _TextFields(_iPController, 'IP of Smart Device'),
-              Container(height: 8,),
+              // DropdownButton <String>(
+              //   hint: Text('Please choose the manufacturer of the gateway'),
+              //   style: TextStyle(color: Colors.grey),
+              //   items: <String>['Ikea Traadfri', 'Philips Hue', 'Google Nest'].map((String value) {
+              //     return DropdownMenuItem<String>(
+              //       value: value,
+              //       child: Text(value)
+              //     );
+              //   }).toList(),
+              //   value: dropdownSelectedItem,
+              //   onChanged: (val) { dropdownSelectedItem = val; setState((){}); },
+              // ),
               _TextFields(_gWController, 'Connected Gateway of Smart Device'),
               Container(height: 8,),
               _TextFields(_gWiPController, 'IP of Gateway of Smart Device'),
