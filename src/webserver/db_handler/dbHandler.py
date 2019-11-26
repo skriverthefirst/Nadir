@@ -18,6 +18,15 @@ class DBHandler():
     def __enter__(self):
         return self
 
+    def createEntry(self, obj):
+        pass
+
+    def editEntry(self, obj):
+        pass #USE UPDATE DB FUNCTION
+
+    def delEntry():
+        pass
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._cursor.close()
         self._connection.close()

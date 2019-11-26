@@ -1,7 +1,10 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:nadir_app/inherited_widget/sd_inherited_widget.dart';
+import 'package:nadir_app/utils/http/http_handler.dart';
 
 enum SDMode {
   Adding,
@@ -18,6 +21,9 @@ class SDevice extends StatefulWidget {
   @override
   _SDeviceState createState() => _SDeviceState();
 }
+
+bool bulbOn = false;
+double _sliderValue = 0.0;
 
 class _SDeviceState extends State<SDevice> {
 
@@ -39,7 +45,7 @@ class _SDeviceState extends State<SDevice> {
     super.didChangeDependencies();
   }
 
-  var dropdownSelectedItem;
+  // var dropdownSelectedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +91,14 @@ class _SDeviceState extends State<SDevice> {
                     final gwip = _gWiPController.text;
 
                     if (widget?.sdMode == SDMode.Adding){
-                      _sds.add({
-                        'name': name,
-                        'desc': desc,
-                        'gateway': gw,
-                        'gatewayIP': gwip
-                      });
+                      String jsonString = '{"name":"$name","desc":"$desc","gateway":"$gw","gatewayIP":"$gwip"}';
+                      makeRequest('POST', jsonString);
+                      // _sds.add({
+                      //   'name': name,
+                      //   'desc': desc,
+                      //   'gateway': gw,
+                      //   'gatewayIP': gwip
+                      // });
                     } else if (widget?.sdMode == SDMode.Editing) {
                       _sds[widget.index] = {
                         'name': name,
@@ -113,13 +121,15 @@ class _SDeviceState extends State<SDevice> {
                         Navigator.pop(context);
                       }),
                     )
-                  : Container()
+                  : Container(),
                 ],
-              )
+              ),
+              // _GetSlider(widget.sdMode)
             ],
           ),
         ),
       ),
+      floatingActionButton: _GetFAB(widget.sdMode)
     );
   }
 }
@@ -162,5 +172,65 @@ class _TextFields extends StatelessWidget {
         hintText: _text
       )
     );
+  }
+}
+
+class _GetFAB extends StatelessWidget {
+
+  final SDMode _sdMode;
+
+  _GetFAB(this._sdMode);
+
+  @override
+  Widget build(BuildContext context) {
+    if(_sdMode == SDMode.Editing) {
+      return FloatingActionButton(
+        onPressed: () {
+          if(bulbOn == false) {
+            var jsondata = {};
+            jsondata["state"] = "on";
+            String data = json.encode(jsondata);
+            makeRequest('POST', data);
+            bulbOn = true;
+          } else if (bulbOn == true) {
+            var jsondata = {};
+            jsondata["state"] = "off";
+            String data = json.encode(jsondata);
+            makeRequest('POST', data);
+            bulbOn = false;
+          }
+        },
+        child: Icon(Icons.power_settings_new),
+      );
+    } else {
+      return Container();
+    }
+  }
+}
+
+class _GetSlider extends StatelessWidget {
+  final SDMode _sdMode;
+
+  _GetSlider(this._sdMode);
+
+  @override
+  Widget build(BuildContext context) {
+    if(_sdMode == SDMode.Editing) {
+      return Slider(
+        activeColor: Colors.indigoAccent,
+        min: 0.0,
+        max: 100.0,
+        onChanged: (newValue) {
+          var jsondata = {};
+          jsondata["state"] = newValue.toInt().toString();
+          String data = json.encode(jsondata);
+          makeRequest('POST', data);
+          _sliderValue = newValue;
+        },
+        value: _sliderValue,
+      );
+    } else {
+      return Container();
+    }
   }
 }

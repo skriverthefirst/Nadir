@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:nadir_app/views/sdevice.dart';
 import 'package:nadir_app/inherited_widget/sd_inherited_widget.dart';
-import 'package:nadir_app/views/testHttp.dart';
 
 class SDlist extends StatefulWidget {
   @override
@@ -51,11 +50,6 @@ class _SDlistState extends State<SDlist> {
             context,
             MaterialPageRoute(builder: (context) => SDevice(SDMode.Adding, null))
           );
-
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => TestHttp())
-          // );
         },
         child: Icon(Icons.add),
       ),

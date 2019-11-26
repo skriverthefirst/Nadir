@@ -7,7 +7,9 @@ class DartSerializer():
         self.gatewayIP = gatewayIP
 
     def toJson(self):
-        pass
-
-    def fromJson(self):
-        pass
+        return {
+            "name" : self.name,
+            "desc" : self.desc,
+            "gateway" : self.gateway,
+            "gatewayIP" : self.gatewayIP
+        }
