@@ -1,3 +1,4 @@
-libcoap/*
+libcoap
 tradfri_standalone_psk.conf
-tools/*
+tools
+test
